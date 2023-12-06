@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //do premennej sme nahrali idecko divka v html a teraz s nim mozme dynamicky pracovat, napr pridat listener
 var divElement =  document.getElementById("get-div-element");
+//toto je anonymna funkcia (nemusi byt event, moze byt aj kontura)
 divElement.addEventListener('click', (event) => {
     //vypisanie hodnoty 
     console.log(event.target);
@@ -29,6 +30,9 @@ function getImages(){
 
     //spracovanie dat
     .then(data => {
+        //zachytavanie elementov
+        var selectAllDiv = document.querySelector("div");
+        console.log(selectAllDiv);
 
         //cyklus, ktory prechadza cez vsetky elementy (v nasom pripade fotky) 
         data.sizes.forEach(size => {
@@ -44,6 +48,7 @@ function getImages(){
                 //-----------DYNAMICKE MENENIE SIRKY A VYSKY VNUTORNEHO DIVU-----------
                     lilDiv.style.width = size.width + 'px';
                     lilDiv.style.height = size.height + 'px';
+                    lilDiv.style.backgroundColor = size.color;
 
                 let bigDiv = document.createElement('div');
                 //ked pridam do listu, tak potom to mozem v css upravovat
